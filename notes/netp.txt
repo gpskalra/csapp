@@ -1,0 +1,28 @@
+﻿1. client server programming model
+- a server process (not machine/host), one or more client processes (processes, not machines/hosts)
+- server manages some resource, provides service to clients by manipulating that resource.
+- single host can have multiple clients/servers running concurrently.
+2. fundamental operation of cleint server programming model - transaction (!= database transaction. e.g - may not be atomic.). Four steps -
+- cleint initiates transaction by sending a request.
+- server receives request, interprets it, manipulates resources.
+- server sends response to client and waits for next request.
+- client receives response and manipulates it.
+3. To actually implement a client server programming model, clients and servers often run on separate hosts and commmunicate using the hardware/software resources of a "computer network".
+4. A "computer network" is a sophisticated physical system. For a host though, a network is just an I/O device connected via a network adapter (another physical device).
+Just like USB Controller connects a Mouse/Keyboard to the host. A network adapter is plugged into an expansion slot on the I/O bus providing physical interface to the network.
+5. A network is a hierarchical system that is organised by geographical proximity. 
+6. Lowest level - LAN. Most popular LAN technology - Ethernet.
+7. For Ethernet LANs, all hosts have an ethernet adapter (which have a 48 bit address in there non-volatile memory). An ethernet adapter is connected to a port on a hub.
+A hub and ethernet adapters connected to this hub through wires make up an ethernet segment. Multiple ethernet segments can be connected through bridges.
+To communicate over Ethernet LANs, hosts send frames via Ethernet adapters - which consist of a frame header and the actual payload. The frame header contains fixed number of header bits
+that have information such as the source and destination address and the size of the payload.
+8. Multiple incompatible LANs and WANs can be connected by specialized computers called routers to form an internet. (interconnected network.) Routers can be used to build internets from
+arbritray collection of LANs and WANs. A router has a port for each network it is connected to.
+9. An internet is made possible by an "internet protocal" and a "protocol software" running on each host and router that implements that protocol. A protocol defines two things -
+naming scheme ( an internet protocol address for each host) and a delivery mechanism - a uniform way to bundle data bits into discrete chunks called packets. An internet packet
+has a header, which contains the packet size, addresses of source and destination hosts and payload.
+10. Encapsulation is one of the fundamental insights of internetworking. Protocol software siting on the source host, can create a frame by appending both the internet packet header(PH) and the 
+network (LAN/WAN) frame header (FH1) and can address the "frame"(Data-PH-FH1) to a router connected to its network. Protocol software on the router, can then extract info on the destination host from the internet
+packet (Data-PH), and use it to create a new frame (Data-PH-FH2) to send the data to the destination host which is on a different network (LAN/WAN). Protocol software on the destination host, can 
+retrieve the data by removing the packet header (PH) and the frame header (FH2).
+
